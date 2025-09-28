@@ -14,6 +14,10 @@ public class Lab10 {
     public static List<String> createNamesList() {
         List<String> names = new ArrayList<>();
         // TODO: เพิ่มชื่อ 4 ชื่อตามที่กำหนด: "Alice", "Bob", "Charlie", "David"
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+        names.add("David");
         return names;
     }
     
@@ -23,6 +27,9 @@ public class Lab10 {
     public static Set<String> createUniqueNamesSet() {
         Set<String> uniqueNames = new HashSet<>();
         // TODO: เพิ่มชื่อ 3 ชื่อ: "Alice", "Eve", "Alice" (Alice ซ้ำ)
+        uniqueNames.add("Alice");
+        uniqueNames.add("Eve");
+        uniqueNames.add("Alice"); // ซ้ำ
         return uniqueNames;
     }
     
@@ -31,6 +38,11 @@ public class Lab10 {
     public static List<Integer> createNumbersList() {
         List<Integer> numbers = new ArrayList<>();
         // TODO: เพิ่มตัวเลข 5 ตัว: 10, 20, 30, 40, 50
+        numbers.add(10);
+        numbers.add(20);
+        numbers.add(30);
+        numbers.add(40);
+        numbers.add(50);
         return numbers;
     }
     
@@ -38,10 +50,9 @@ public class Lab10 {
     // ให้สร้าง method ที่นับความถี่ของคำในประโยค "hello world hello java world"
     // ผลลัพธ์ควรเป็น: hello=2, world=2, java=1
     public static Map<String, Integer> countWordFrequency() {
-        Map<String, Integer> wordCount = new HashMap<>();
         // TODO: นับความถี่ของคำในประโยค "hello world hello java world"
         // คำแนะนำ: ใช้ String.split() เพื่อแยกคำ และ toLowerCase() เพื่อแปลงเป็นตัวพิมพ์เล็ก
-        return wordCount;
+        return countWords("hello world hello java world");
     }
     
     // Helper method สำหรับการนับคำ (สำหรับ Optional)
@@ -50,8 +61,15 @@ public class Lab10 {
         // TODO: implement word counting logic
         // คำแนะนำ: 
         // 1. แปลงประโยคเป็นตัวพิมพ์เล็ก
+        String lowerSentence = sentence.toLowerCase();
         // 2. แยกคำด้วย split("\\s+")
+        String[] words = lowerSentence.split("\\s+");
         // 3. วนลูปนับความถี่แต่ละคำ
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            }
+        }
         return wordCount;
     }
     

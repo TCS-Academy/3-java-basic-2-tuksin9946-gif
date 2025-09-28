@@ -12,6 +12,13 @@ public class Lab12 {
     // ให้สร้าง method ที่เขียนข้อความ "Hello, File I/O!" ลงในไฟล์ data.txt
     public static void writeToDataFile() throws IOException {
         // TODO: ใช้ FileWriter เพื่อเขียนข้อความ "Hello, File I/O!" ลงในไฟล์ data.txt
+        String filename = "data.txt";
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("Hello, File I/O!");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     // โจทย์ทำตาม: ใช้ Scanner เพื่ออ่านข้อความจากไฟล์ data.txt และแสดงผลออกทางหน้าจอ
@@ -19,7 +26,16 @@ public class Lab12 {
     public static String readFromDataFile() throws IOException {
         // TODO: ใช้ Scanner เพื่ออ่านข้อความจากไฟล์ data.txt
         // TODO: return เนื้อหาที่อ่านได้
-        return "";
+        String filename = "data.txt";
+        try (Scanner scanner = new Scanner(new File(filename))) {
+            while (scanner.hasNextLine()) {
+                return scanner.nextLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading from file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
     
     // โจทย์ทำเอง: เขียนโปรแกรมที่เขียนข้อมูลลงในไฟล์ชื่อ log.txt
