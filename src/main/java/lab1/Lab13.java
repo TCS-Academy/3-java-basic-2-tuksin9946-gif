@@ -9,17 +9,19 @@ public class Lab13 {
     // ให้สร้าง method ที่คืนค่า List<Integer> ที่มีตัวเลข 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     public static List<Integer> createNumbersList() {
         // TODO: สร้าง List<Integer> ที่มีตัวเลข 1 ถึง 10
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
         // TODO: คืนค่า List<Integer> ที่สร้างขึ้น
-        return null;
+        return numbers;
     }
     
     // โจทย์ทำตาม: ใช้ stream() และ filter() พร้อม Lambda Expression เพื่อกรองเอาเฉพาะเลขคู่
     // ให้สร้าง method ที่รับ List<Integer> และคืนค่า List<Integer> ที่มีเฉพาะเลขคู่
     public static List<Integer> filterEvenNumbers(List<Integer> numbers) {
         // TODO: ใช้ numbers.stream().filter() พร้อม Lambda Expression เพื่อกรองเลขคู่
+        numbers.stream().filter(n -> n % 2 == 0);
         // TODO: ใช้ collect(Collectors.toList()) เพื่อแปลงกลับเป็น List
         // คำแนะนำ: เลขคู่คือเลขที่หาร 2 ลงตัว (n % 2 == 0)
-        return null;
+        return numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
     }
     
     // โจทย์ทำตาม: ใช้ forEach() เพื่อพิมพ์เลขคู่ที่กรองได้
@@ -27,6 +29,8 @@ public class Lab13 {
     public static void printNumbers(List<Integer> numbers) {
         // TODO: ใช้ numbers.stream().forEach() พร้อม Lambda Expression เพื่อพิมพ์แต่ละตัวเลข
         // คำแนะนำ: ใช้ System.out.println() ใน Lambda Expression
+        numbers.stream().forEach(n -> System.out.print(n + " "));
+        System.out.println();
     }
     
     // โจทย์ทำตาม: ใช้ stream() และ map() เพื่อทำ List ใหม่ ที่มีค่าเป็น 2 เท่า ของ List เดิม
@@ -34,7 +38,7 @@ public class Lab13 {
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
         // TODO: ใช้ numbers.stream().map() พร้อม Lambda Expression เพื่อคูณแต่ละตัวเลขด้วย 2
         // TODO: ใช้ collect(Collectors.toList()) เพื่อแปลงกลับเป็น List
-        return null;
+        return numbers.stream().map(n -> n * 2).collect(Collectors.toList());
     }
     
     // โจทย์ทำเอง: สร้าง List ของ String ที่เก็บชื่อคน
@@ -43,7 +47,8 @@ public class Lab13 {
         // TODO: สร้าง List<String> ที่มีชื่อคน 7 ชื่อ
         // ชื่อที่กำหนด: "John", "Alexander", "Maria", "Christopher", "Anna", "Benjamin", "Kate"
         // TODO: คืนค่า List<String> ที่สร้างขึ้น
-        return null;
+        List<String> names = Arrays.asList("John", "Alexander", "Maria", "Christopher", "Anna", "Benjamin", "Kate");
+        return names;
     }
     
     // โจทย์ทำเอง: ใช้ stream() และ filter() พร้อม Lambda Expression เพื่อกรองเอาเฉพาะชื่อที่มีความยาวมากกว่า 5 ตัวอักษร
@@ -52,7 +57,9 @@ public class Lab13 {
         // TODO: ใช้ names.stream().filter() พร้อม Lambda Expression เพื่อกรองชื่อที่มีความยาวมากกว่า 5 ตัวอักษร
         // TODO: ใช้ collect(Collectors.toList()) เพื่อแปลงกลับเป็น List
         // คำแนะนำ: ใช้ name.length() > 5 ใน Lambda Expression
-        return null;
+        names.stream().filter(name -> name.length() > 5);
+        names.stream().filter(name -> name.length() > 5).collect(Collectors.toList());
+        return names.stream().filter(name -> name.length() > 5).collect(Collectors.toList());
     }
     
     // Optional: ใช้ map() เพื่อแปลง List ของ String ให้เป็น List ที่เก็บความยาวของแต่ละชื่อ
@@ -61,7 +68,7 @@ public class Lab13 {
         // TODO: ใช้ names.stream().map() พร้อม Lambda Expression เพื่อแปลงแต่ละชื่อให้เป็นความยาว
         // TODO: ใช้ collect(Collectors.toList()) เพื่อแปลงกลับเป็น List<Integer>
         // คำแนะนำ: ใช้ String::length หรือ name -> name.length() ใน map()
-        return null;
+        return names.stream().map(String::length).collect(Collectors.toList());
     }
     
     // Helper method สำหรับการทดสอบ - ใช้ในการแสดงผลลัพท์

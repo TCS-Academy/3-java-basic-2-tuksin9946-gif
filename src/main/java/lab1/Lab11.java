@@ -10,6 +10,12 @@ public class Lab11 {
     // ถ้า name เป็น null หรือ empty string ก็ให้ throw InvalidNameException
     public static void validateName(String name) throws InvalidNameException {
         // TODO: เช็คว่า name เป็น "XXX", null, หรือ empty string แล้ว throw InvalidNameException
+        if (name == null || name.trim().isEmpty()) {
+            throw new InvalidNameException("Name cannot be null or empty");
+        }
+        if (name.equals("XXX")) {
+            throw new InvalidNameException("Invalid name: " + name);
+        }
     }
     
     // โจทย์ทำเอง: สร้างเมธอดที่รับค่าจากผู้ใช้และใช้ try-catch จัดการ InputMismatchException
@@ -17,9 +23,16 @@ public class Lab11 {
     // ถ้าผู้ใช้ใส่ข้อมูลที่ไม่ใช่ตัวเลข ให้จัดการด้วย try-catch
     public static int getUserInput() {
         // TODO: ใช้ Scanner รับ input จากผู้ใช้
+        Scanner scanner = new Scanner(System.in);
         // TODO: ใช้ try-catch จัดการ InputMismatchException
-        // TODO: ถ้าเกิด exception ให้ return -1
-        return 0;
+        try {
+            System.out.println("Please enter an integer: ");
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+            // TODO: ถ้าเกิด exception ให้ return -1
+            return -1; // return -1 to indicate error
+        }
     }
     
     // Optional: สร้าง method สำหรับถอนเงินจากบัญชี
@@ -27,8 +40,14 @@ public class Lab11 {
     // ถ้า amount > balance ให้ throw InsufficientFundsException
     public static double withdraw(double balance, double amount) throws InsufficientFundsException {
         // TODO: เช็คว่า amount > balance แล้ว throw InsufficientFundsException
+        if (amount > balance) {
+            throw new InsufficientFundsException("เงินไม่พอสำหรับการถอน");
+        }
+        if (amount < 0) {
+            throw new InsufficientFundsException("จำนวนเงินที่ถอนต้องไม่เป็นลบ");
+        }
         // TODO: ถ้าไม่เกิน ให้ return balance - amount
-        return 0.0;
+        return balance - amount;
     }
     
     public static void main(String[] args) {
